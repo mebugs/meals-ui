@@ -24,8 +24,8 @@ export default {
   },
   data() {
     return {
-      title: 'Vue Admin Template',
-      logo: 'https://wpimg.wallstcn.com/69a1c46c-eb1c-4b46-8bd4-e9e686ef5251.png'
+      title: '无锡市华藏寺',
+      logo: '/logo.jpg'
     }
   }
 }
@@ -46,7 +46,7 @@ export default {
   width: 100%;
   height: 50px;
   line-height: 50px;
-  background: #2b2f3a;
+  background: #B28F77;
   text-align: center;
   overflow: hidden;
 
@@ -59,6 +59,7 @@ export default {
       height: 32px;
       vertical-align: middle;
       margin-right: 12px;
+      border-radius: 50%;
     }
 
     & .sidebar-title {
@@ -76,6 +77,7 @@ export default {
   &.collapse {
     .sidebar-logo {
       margin-right: 0px;
+
     }
   }
 }

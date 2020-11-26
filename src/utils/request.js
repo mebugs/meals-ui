@@ -19,7 +19,7 @@ service.interceptors.request.use(
       // let each request carry token
       // ['X-Token'] is a custom headers key
       // please modify it according to the actual situation
-      config.headers['X-Token'] = getToken()
+      config.headers['Authorization'] = 'Bearer ' + getToken()
     }
     return config
   },
@@ -46,19 +46,19 @@ service.interceptors.response.use(
     const res = response.data
 
     // if the custom code is not 20000, it is judged as an error.
-    if (res.code !== 20000) {
+    if (res.code !== 200) {
       Message({
-        message: res.message || 'Error',
+        message: res.message || '数据异常请联系管理员',
         type: 'error',
         duration: 5 * 1000
       })
 
-      // 50008: Illegal token; 50012: Other clients logged in; 50014: Token expired;
-      if (res.code === 50008 || res.code === 50012 || res.code === 50014) {
+      // 50008: 未登录
+      if (res.code === 50008) {
         // to re-login
-        MessageBox.confirm('You have been logged out, you can cancel to stay on this page, or log in again', 'Confirm logout', {
-          confirmButtonText: 'Re-Login',
-          cancelButtonText: 'Cancel',
+        MessageBox.confirm('您当前尚未登录或登录过期', '确认登录', {
+          confirmButtonText: '前往登录',
+          cancelButtonText: '取消',
           type: 'warning'
         }).then(() => {
           store.dispatch('user/resetToken').then(() => {
@@ -66,7 +66,19 @@ service.interceptors.response.use(
           })
         })
       }
-      return Promise.reject(new Error(res.message || 'Error'))
+
+      // 50009: 无接口权限
+      if (res.code === 50009) {
+        // to re-login
+        MessageBox.confirm('您没有此接口访问权限', '权限更新', {
+          confirmButtonText: '更新权限',
+          cancelButtonText: '取消',
+          type: 'warning'
+        }).then(() => {
+          location.reload()
+        })
+      }
+      return Promise.reject(new Error(res.message || '数据异常请联系管理员'))
     } else {
       return res
     }
