@@ -24,8 +24,8 @@ export default {
   },
   data() {
     return {
-      title: '无锡市华藏寺',
-      logo: '/logo.jpg'
+      title: 'MEAL',
+      logo: '/logo.png'
     }
   }
 }
@@ -46,7 +46,7 @@ export default {
   width: 100%;
   height: 50px;
   line-height: 50px;
-  background: #B28F77;
+  background: #283443;
   text-align: center;
   overflow: hidden;
 
@@ -60,6 +60,7 @@ export default {
       vertical-align: middle;
       margin-right: 12px;
       border-radius: 50%;
+      box-shadow: 0 0 2px 1px #dcedff;
     }
 
     & .sidebar-title {

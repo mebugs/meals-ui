@@ -3,18 +3,18 @@
     <el-form ref="loginForm" :model="loginForm" :rules="loginRules" class="login-form" auto-complete="on" label-position="left">
 
       <div class="title-container">
-        <h3 class="title"><img src="/logo.png"></h3>
+        <h3 class="title"><img src="/logo.jpg"></h3>
       </div>
 
-      <el-form-item prop="username">
+      <el-form-item prop="name">
         <span class="svg-container">
           <svg-icon icon-class="user" />
         </span>
         <el-input
-          ref="username"
-          v-model="loginForm.username"
-          placeholder="Username"
-          name="username"
+          ref="name"
+          v-model="loginForm.name"
+          placeholder="name"
+          name="name"
           type="text"
           tabindex="1"
           auto-complete="on"
@@ -44,7 +44,7 @@
       <el-button :loading="loading" type="primary" style="width:100%;margin-bottom:30px;" @click.native.prevent="handleLogin">Login</el-button>
 
       <div class="tips">
-        <span style="margin-right:20px;">username: admin</span>
+        <span style="margin-right:20px;">name: admin</span>
         <span> password: 123456</span>
       </div>
 
@@ -58,11 +58,11 @@ export default {
   data() {
     return {
       loginForm: {
-        username: '',
+        name: '',
         password: ''
       },
       loginRules: {
-        username: [{ required: true, trigger: 'blur' }],
+        name: [{ required: true, trigger: 'blur' }],
         password: [{ required: true, trigger: 'blur' }]
       },
       loading: false,
@@ -121,7 +121,11 @@ export default {
 .tips span:first-of-type{margin-right:16px}
 .svg-container{padding:6px 5px 6px 15px;color:#999;vertical-align:middle;width:30px;display:inline-block}
 .title-container{position:relative}
-{font-size:26px;color:#eee;margin:0 auto 40px auto;text-align:center;font-weight:bold}
-.title img{width:80%;margin:0 10%}
+.title {width: 80%;margin: 10px 10%;position: relative;overflow: hidden;}
+.title img{width:90%;margin: 0 5%;}
+.title:before{content:"";position:absolute;left:-160px;top:-10px;width:240px;height:30px;background-color:rgba(255,255,255,0.3);transform:rotate(-50deg);animation:searchLights 1.5s ease-in 0s infinite}
+@keyframes searchLights{0{left:-160px;top:-10px;}
+100%{left:100%;top:80%;}
+}
 .show-pwd{position:absolute;right:10px;top:7px;font-size:16px;color:#999;cursor:pointer;user-select:none}
 </style>

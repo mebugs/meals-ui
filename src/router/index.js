@@ -50,12 +50,32 @@ export const constantRoutes = [
       path: 'dashboard',
       name: '工作中心',
       component: () => import('@/views/dashboard/index'),
-      meta: { title: '工作中心', icon: 'el-icon-house' }
+      meta: { title: '工作中心', icon: 'el-icon-help' }
     }]
   }
 ]
 // 动态路由
 export const asyncRoutes = [
+  {
+    path: '/code',
+    component: Layout,
+    redirect: '/code/list',
+    alwaysShow: true, // will always show the root menu
+    name: '代码生成',
+    meta: {
+      title: '代码生成',
+      icon: 'el-icon-attract',
+      roles: ['admin', 'dev']
+    },
+    children: [
+      {
+        path: 'list',
+        component: () => import('@/views/codeMaker/index'),
+        name: '代码生成器',
+        meta: { title: '代码生成器' }
+      }
+    ]
+  },
   // 404 page must be placed at the end !!!
   { path: '*', redirect: '/404', hidden: true }
 ]

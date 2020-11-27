@@ -19,11 +19,11 @@ export default {
     if (icon) {
       // vnodes.push(<svg-icon icon-class={icon}/>)
       // 调用element的icon
-      vnodes.push('<i class={icon}></i>')
+      vnodes.push(<i class={icon}></i>)
     }
 
     if (title) {
-      vnodes.push('<span slot=\'title\'>{(title)}</span>')
+      vnodes.push(<span slot='title'>{(title)}</span>)
     }
     return vnodes
   }
