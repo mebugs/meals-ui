@@ -14,3 +14,12 @@ export function getTableColumnList(data) {
     params: { tableName: data }
   })
 }
+
+export function makeCode(data) {
+  return request({
+    url: '/code/make',
+    method: 'post',
+    data
+  })
+}
+

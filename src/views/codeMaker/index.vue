@@ -1,5 +1,6 @@
 <template>
   <div class="app-container">
+    <p class="tp">温馨提示：[代码生成]相关内容仅超管admin与开发者dev可见（仅用于说明，实际应用可删除）</p>
     <el-table v-loading="loading" style="width: 100%" :stripe="true" :show-overflow-tooltip="true" :data="list" border>
       <el-table-column label="表名" align="center">
         <template slot-scope="scope"><span>{{ scope.row.tableName }}</span></template>
@@ -19,7 +20,7 @@
       </el-table-column>
     </el-table>
 
-    <el-dialog v-droll :title="title" width="900px" :visible.sync="doFlag" :close-on-click-modal="false">
+    <el-dialog v-droll v-loading="doLoading" :title="title" width="900px" :visible.sync="doFlag" :close-on-click-modal="false">
       <el-form ref="conf" class="half" :model="conf" :rules="rules" label-width="75px">
         <el-table style="width: 100%;margin-bottom: 10px;" :stripe="true" size="mini" :show-overflow-tooltip="true" :data="columnList" border>
           <el-table-column label="字段名" align="center">
@@ -54,7 +55,7 @@
 </template>
 
 <script>
-import { getTableList, getTableColumnList } from '@/api/codeMaker.js'
+import { getTableList, getTableColumnList, makeCode } from '@/api/codeMaker.js'
 export default
 {
   data() {
@@ -62,6 +63,7 @@ export default
       list: [],
       loading: false,
       doFlag: false,
+      doLoading: false,
       title: '',
       columnList: [],
       conf: {},
@@ -84,6 +86,7 @@ export default
         if (res.data) {
           this.columnList = res.data
           this.conf = {}
+          this.conf.tableName = row.tableName
           this.doFlag = true
         } else {
           this.$message.error('获取数据库表字段信息失败')
@@ -94,7 +97,23 @@ export default
 
     },
     save() {
-
+      this.$refs.conf.validate(valid => {
+        if (valid) {
+          this.doLoading = true
+          makeCode(this.conf).then(res => {
+            this.doLoading = false
+            if (res.data) {
+              this.$message.success('代码生成完成，请到服务端项目中查看')
+              this.doFlag = false
+            } else {
+              this.$message.error('获取数据库表字段信息失败')
+            }
+          })
+        } else {
+          this.$message.warning('请输入标红必填项后提交')
+          return false
+        }
+      })
     },
     getList() { // 获取表数据
       getTableList().then(res => {

@@ -24,6 +24,7 @@ i.el-dialog__close.el-icon.el-icon-close{color:#fff;font-weight:900;font-size:24
 .need label.el-form-item__label{color:#f44336}
 .el-form-item{margin-bottom:18px}
 .el-form-item.full{width:100%}
+p.tp {margin: 10px 0;padding: 10px;background: #304156;color: #dcedff;}
 input::-webkit-input-placeholder,textarea::-webkit-input-placeholder{color:#666!important}
 input:-moz-placeholder,textarea:-moz-placeholder{color:#666!important}
 input::-moz-placeholder,textarea::-moz-placeholder{color:#666!important}
