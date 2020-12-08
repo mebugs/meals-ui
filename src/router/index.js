@@ -57,6 +57,26 @@ export const constantRoutes = [
 // 动态路由
 export const asyncRoutes = [
   {
+    path: '/user',
+    component: Layout,
+    redirect: '/user/list',
+    alwaysShow: true, // will always show the root menu
+    name: '账号管理',
+    meta: {
+      title: '账号管理',
+      icon: 'el-icon-user',
+      roles: ['admin']
+    },
+    children: [
+      {
+        path: 'list',
+        component: () => import('@/views/user/list'),
+        name: '用户管理',
+        meta: { title: '用户管理' }
+      }
+    ]
+  },
+  {
     path: '/code',
     component: Layout,
     redirect: '/code/list',
@@ -65,7 +85,7 @@ export const asyncRoutes = [
     meta: {
       title: '代码生成',
       icon: 'el-icon-attract',
-      roles: ['admin', 'dev']
+      roles: ['dev']
     },
     children: [
       {

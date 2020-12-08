@@ -60,7 +60,6 @@ export default {
       vertical-align: middle;
       margin-right: 12px;
       border-radius: 50%;
-      box-shadow: 0 0 2px 1px #dcedff;
     }
 
     & .sidebar-title {

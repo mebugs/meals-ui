@@ -14,3 +14,26 @@ export function getUserBase() {
     method: 'get'
   })
 }
+
+export function saveUser(data) {
+  return request({
+    url: '/user/save',
+    method: 'post',
+    data
+  })
+}
+
+export function pageUser(params) {
+  return request({
+    url: '/user/page',
+    method: 'get',
+    params: params
+  })
+}
+
+export function getUser(params) {
+  return request({
+    url: '/user/get?id=' + params,
+    method: 'get'
+  })
+}
