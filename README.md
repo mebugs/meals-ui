@@ -26,3 +26,7 @@ meal（[gitee地址](https://gitee.com/mebugs/meal) [github地址](https://githu
  - 未移除自定义icon（svg格式），替换为element-ui的图标，直接修改了Sidebar/Item.vue
  - 核心方法getUserBase获取用户基础信息并存于state中
  - 增加v-droll可以自由在屏幕范围内拖动弹窗（utils/droll.js）
+
+# 构建
+ - 开发模式： npm run dev
+ - 生产编译： npm run build
