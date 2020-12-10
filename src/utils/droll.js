@@ -7,11 +7,12 @@ Vue.directive('droll', {
     const dialogHeaderEl = el.querySelector('.el-dialog__header')
     // 获取拖拽内容整体
     const dragDom = el.querySelector('.el-dialog')
-    dialogHeaderEl.style.cursor = 'move'
+    dialogHeaderEl.style.cursor = 'grab'
     // 获取原有属性 ie dom元素.currentStyle 火狐谷歌 window.getComputedStyle(dom元素, null)
     const sty = dragDom.currentStyle || window.getComputedStyle(dragDom, null)
     // 鼠标按下事件
     dialogHeaderEl.onmousedown = (e) => {
+      dialogHeaderEl.style.cursor = 'grabbing'
       // 禁用原生事件
       e.preventDefault()
       // 计算活动范围区间
@@ -58,6 +59,7 @@ Vue.directive('droll', {
         // binding.value({x:e.pageX,y:e.pageY})
       }
       document.onmouseup = function(e) {
+        dialogHeaderEl.style.cursor = 'grab'
         document.onmousemove = null
         document.onmouseup = null
       }

@@ -27,16 +27,16 @@
             <el-button type="primary" icon="el-icon-edit" size="mini" @click="modify(scope.row.id)" />
           </el-tooltip>
           <el-tooltip v-if="scope.row.status==1" class="item" effect="dark" content="锁定" placement="top">
-            <el-button type="warning" icon="el-icon-lock" size="mini" @click="changeTo(scope.row.id,2)" />
+            <el-button type="warning" icon="el-icon-lock" size="mini" @click="changeTo(scope.row,2)" />
           </el-tooltip>
           <el-tooltip v-if="scope.row.status==2" class="item" effect="dark" content="解锁" placement="top">
-            <el-button type="success" icon="el-icon-unlock" size="mini" @click="changeTo(scope.row.id,1)" />
+            <el-button type="success" icon="el-icon-unlock" size="mini" @click="changeTo(scope.row,1)" />
           </el-tooltip>
           <el-tooltip v-if="scope.row.status<3" class="item" effect="dark" content="重置密码" placement="top">
-            <el-button type="info" icon="el-icon-refresh" size="mini" @click="changeTo(scope.row.id,4)" />
+            <el-button type="info" icon="el-icon-refresh" size="mini" @click="changeTo(scope.row,4)" />
           </el-tooltip>
           <el-tooltip v-if="scope.row.status<3" class="item" effect="dark" content="删除" placement="top">
-            <el-button type="danger" icon="el-icon-delete" size="mini" @click="changeTo(scope.row.id,3)" />
+            <el-button type="danger" icon="el-icon-delete" size="mini" @click="changeTo(scope.row,3)" />
           </el-tooltip>
         </template>
       </el-table-column>
@@ -49,7 +49,7 @@
       <div v-loading="doLoading" class="popload">
         <el-form ref="user" :model="user" :rules="rules" label-width="85px">
           <el-form-item class="need" label="登录账号" prop="name">
-            <el-input v-model="user.name" placeholder="请输入登录帐号名" />
+            <el-input v-model="user.name" placeholder="请输入登录帐号名" maxlength="16" show-word-limit />
           </el-form-item>
           <el-form-item class="need is-required" label="权限角色">
             <el-checkbox-group v-model="checkRoles" size="small">
@@ -85,7 +85,10 @@ export default
       title: '',
       user: {},
       rules: {
-        name: [{ required: true, message: '请输入登录账号', trigger: 'blur' }]
+        name: [
+          { required: true, message: '请输入登录账号', trigger: 'blur' },
+          { required: true, pattern: /^\w+$/, message: '账号支持字母数字下划线组合', trigger: 'blur' }
+        ]
       },
       allRoles: [],
       checkRoles: []
@@ -153,13 +156,14 @@ export default
         }
       })
     },
-    changeTo(id, type) { // 锁定 解锁 删除 重置密码
-      this.user = { id: id }
+    changeTo(row, type) { // 锁定 解锁 删除 重置密码
+      this.user = { id: row.id }
       let tips = '是否确认删除账号？删除后无法恢复，仅在列表可见！'
       switch (type) {
         case 4 :
           tips = '是否确认重置该账号的密码？密码将重置与账号一致！'
           this.user.resetPwd = 1
+          this.user.name = row.name
           break
         case 2 :
           tips = '是否确认锁定账号？锁定后账号将无法登陆系统！'
@@ -190,7 +194,7 @@ export default
           this.canc()
           this.getList()
         } else {
-          this.$message.error('用户数据更新失败')
+          this.$message.error('用户数据更新失败，可能账号名已存在')
         }
       })
     },

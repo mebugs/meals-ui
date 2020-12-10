@@ -48,7 +48,7 @@ service.interceptors.response.use(
     // if the custom code is not 20000, it is judged as an error.
     if (res.code !== 200) {
       Message({
-        message: res.message || '数据异常请联系管理员',
+        message: res.msg || '数据异常请联系管理员',
         type: 'error',
         duration: 5 * 1000
       })
@@ -78,7 +78,7 @@ service.interceptors.response.use(
           location.reload()
         })
       }
-      return Promise.reject(new Error(res.message || '数据异常请联系管理员'))
+      return Promise.reject(new Error(res.msg || '数据异常请联系管理员'))
     } else {
       return res
     }

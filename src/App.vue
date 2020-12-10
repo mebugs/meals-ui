@@ -20,7 +20,7 @@ ul.el-menu--collapse.el-menu i{margin:15px;font-size:24px!important}
 .querys{margin: 0 10px 5px 0;}
 .el-dialog{}
 .el-dialog__body{padding:15px!important;overflow:hidden}
-.el-dialog__header{margin-bottom:5px;padding:15px;background:#283443;cursor: move;}
+.el-dialog__header{margin-bottom:5px;padding:15px;background:#283443;cursor: grab;}
 .el-dialog__header .el-dialog__title{color: #fff;font-weight:900;}
 .el-dialog__header button{top:15px;right: 15px;}
 i.el-dialog__close.el-icon.el-icon-close{color:#fff;font-weight:900;font-size:24px}

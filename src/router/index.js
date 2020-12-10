@@ -57,6 +57,68 @@ export const constantRoutes = [
 // 动态路由
 export const asyncRoutes = [
   {
+    path: '/role',
+    component: Layout,
+    redirect: '/role/def',
+    alwaysShow: true, // will always show the root menu
+    name: '测试页',
+    meta: { title: '测试页', icon: 'el-icon-toilet-paper' },
+    children: [
+      {
+        path: 'def',
+        component: () => import('@/views/role/def'),
+        name: '全员可见',
+        meta: { title: '全员可见' }
+      },
+      {
+        path: 'admin',
+        component: () => import('@/views/role/admin'),
+        name: '仅超管可见',
+        meta: { title: '仅超管可见', roles: ['admin'] }
+      },
+      {
+        path: 'adminadev',
+        component: () => import('@/views/role/adminadev'),
+        name: '超管/研发可见',
+        meta: { title: '超管/研发可见', roles: ['admin', 'dev'] }
+      },
+      {
+        path: 'more',
+        component: () => import('@/views/role/more'),
+        name: '多级路由',
+        meta: { title: '多级路由', breadcrumb: false },
+        children: [
+          {
+            path: 'child',
+            component: () => import('@/views/role/more/child'),
+            name: '子级路由界面',
+            meta: { title: '子级路由界面' }
+          },
+          {
+            path: 'more',
+            component: () => import('@/views/role/more/index'),
+            name: '更多子级路由',
+            meta: { title: '更多子级路由', breadcrumb: false },
+            children: [
+              {
+                path: 'child',
+                component: () => import('@/views/role/more/child/index'),
+                name: '更子级路由界面1',
+                meta: { title: '更子级路由界面1' }
+              },
+              {
+                path: 'child2',
+                component: () => import('@/views/role/more/child/index'),
+                name: '更子级路由界面2',
+                meta: { title: '更子级路由界面2' }
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
     path: '/user',
     component: Layout,
     redirect: '/user/list',
@@ -93,6 +155,21 @@ export const asyncRoutes = [
         component: () => import('@/views/codeMaker/index'),
         name: '代码生成器',
         meta: { title: '代码生成器' }
+      }
+    ]
+  },
+  {
+    path: '/mine',
+    component: Layout,
+    hidden: true,
+    redirect: 'noredirect',
+    meta: { breadcrumb: false },
+    children: [
+      {
+        path: 'center',
+        component: () => import('@/views/user/center'),
+        name: '个人中心',
+        meta: { title: '个人中心' }
       }
     ]
   },

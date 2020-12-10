@@ -37,3 +37,18 @@ export function getUser(params) {
     method: 'get'
   })
 }
+
+export function getMine() {
+  return request({
+    url: '/user/getMine',
+    method: 'get'
+  })
+}
+
+export function resetPwd(params) {
+  return request({
+    url: '/user/resetPwd',
+    method: 'get',
+    params: params
+  })
+}

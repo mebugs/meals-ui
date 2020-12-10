@@ -16,6 +16,11 @@
               工作中心
             </el-dropdown-item>
           </router-link>
+          <router-link to="/mine/center">
+            <el-dropdown-item>
+              个人设置
+            </el-dropdown-item>
+          </router-link>
           <el-dropdown-item divided @click.native="logout">
             <span style="display:block;">登出</span>
           </el-dropdown-item>
