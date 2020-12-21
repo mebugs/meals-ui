@@ -24,7 +24,7 @@ export default {
   },
   data() {
     return {
-      title: 'MEAL',
+      title: 'MealS',
       logo: '/logo.png'
     }
   }
@@ -59,7 +59,6 @@ export default {
       height: 32px;
       vertical-align: middle;
       margin-right: 12px;
-      border-radius: 50%;
     }
 
     & .sidebar-title {

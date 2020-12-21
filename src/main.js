@@ -15,7 +15,8 @@ import router from './router'
 import '@/icons' // icon
 import '@/permission' // permission control
 
-import './utils/droll' // droll the dialog
+import './directive/droll' // 拖拽弹窗
+import './directive/authorize' // 权限指令
 
 // set ElementUI lang to EN
 // Vue.use(ElementUI, { locale })

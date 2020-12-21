@@ -1,17 +1,18 @@
 import request from '@/utils/request'
 
-export function getTableList() {
+export function getTableList(params) {
   return request({
     url: '/code/getTableList',
-    method: 'get'
+    method: 'get',
+    params: params
   })
 }
 
-export function getTableColumnList(data) {
+export function getTableColumnList(params) {
   return request({
     url: '/code/getTableColumnList',
     method: 'get',
-    params: { tableName: data }
+    params: { tableName: params }
   })
 }
 
@@ -22,4 +23,3 @@ export function makeCode(data) {
     data
   })
 }
-

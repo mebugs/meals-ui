@@ -11,7 +11,7 @@ meal（[gitee地址](https://gitee.com/mebugs/meal) [github地址](https://githu
 
 meal-ui（[gitee地址](https://gitee.com/mebugs/meal-ui) [github地址](https://github.com/mebugs/meal-ui)）
 
-meals相比meal增加了更为细致化的权限定义，不再仅仅是根据角色授权而是根据具体的权限集清单进行授权操作。
+meal相比meal增加了更为细致化的权限定义，不再仅仅是根据角色授权而是根据具体的权限集清单进行授权操作。
 
 # meals-ui
 本仓库为meals仓库的前端仓库

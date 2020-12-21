@@ -2,7 +2,7 @@
 import Vue from 'vue'
 // v-droll: 弹窗拖拽
 Vue.directive('droll', {
-  bind(el, binding, vnode, oldVnode) {
+  bind(el, binding, vnode, oldVnode) { // 入参：绑定元素、对象、虚拟节点、上一个虚拟节点
     // 获取拖拽内容头部
     const dialogHeaderEl = el.querySelector('.el-dialog__header')
     // 获取拖拽内容整体
