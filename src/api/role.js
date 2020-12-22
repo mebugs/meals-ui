@@ -6,3 +6,26 @@ export function getAllRole() {
     method: 'get'
   })
 }
+
+export function pageRole(params) {
+  return request({
+    url: '/sysRole/rolePage',
+    method: 'get',
+    params: params
+  })
+}
+
+export function getRoleInfo(params) {
+  return request({
+    url: '/sysRole/roleInfo/' + params,
+    method: 'get'
+  })
+}
+
+export function saveRole(data) {
+  return request({
+    url: '/sysRole/save',
+    method: 'post',
+    data
+  })
+}

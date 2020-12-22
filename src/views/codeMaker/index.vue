@@ -7,7 +7,7 @@
     </div>
     <el-table v-loading="loading" style="width: 100%" :stripe="true" :show-overflow-tooltip="true" :data="list" border @selection-change="listSelect">
       <el-table-column type="selection" width="40" />
-      <el-table-column label="表名" align="left" width="200" >
+      <el-table-column label="表名" align="left" width="200">
         <template slot-scope="scope"><span>{{ scope.row.tableName }}</span></template>
       </el-table-column>
       <el-table-column label="注释" min-width="200" :show-overflow-tooltip="true" align="left">

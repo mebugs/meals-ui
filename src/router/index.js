@@ -137,6 +137,12 @@ export const asyncRoutes = [
         meta: { title: '用户管理' }
       },
       {
+        path: 'role',
+        component: () => import('@/views/sys/role'),
+        name: '角色管理',
+        meta: { title: '角色管理' }
+      },
+      {
         path: 'auth',
         component: () => import('@/views/sys/auth'),
         name: '查看权限集',

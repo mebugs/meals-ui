@@ -25,7 +25,7 @@ export default
     return {
       list: [],
       loading: false,
-      typeVals: ['', '菜单/路由', '按钮/接口' ],
+      typeVals: ['', '菜单/路由', '按钮/接口'],
       typeTags: ['primary', 'primary', 'success']
     }
   },

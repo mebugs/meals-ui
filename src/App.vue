@@ -29,7 +29,7 @@ i.el-dialog__close.el-icon.el-icon-close{color:#fff;font-weight:900;font-size:24
 p.tips {margin: 5px;font-size: 13px;line-height: 1.5;color: #283443;font-weight: 900;}
 .dialog-footer{float: right;}
 .half{overflow:hidden}
-.half .el-form-item{width:50%;float:left}
+.half .el-form-item,.hfitem{width:50%;float:left}
 .need label.el-form-item__label{color:#f44336}
 .el-form-item{margin-bottom:18px}
 .el-form-item.full{width:100%}
