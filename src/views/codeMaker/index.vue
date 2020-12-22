@@ -7,16 +7,16 @@
     </div>
     <el-table v-loading="loading" style="width: 100%" :stripe="true" :show-overflow-tooltip="true" :data="list" border @selection-change="listSelect">
       <el-table-column type="selection" width="40" />
-      <el-table-column label="表名" align="center">
+      <el-table-column label="表名" align="left" width="200" >
         <template slot-scope="scope"><span>{{ scope.row.tableName }}</span></template>
       </el-table-column>
-      <el-table-column label="注释" max-width="400" :show-overflow-tooltip="true" align="center">
+      <el-table-column label="注释" min-width="200" :show-overflow-tooltip="true" align="left">
         <template slot-scope="scope"><span>{{ scope.row.comments }}</span></template>
       </el-table-column>
-      <el-table-column label="创建时间" align="center">
+      <el-table-column label="创建时间" width="160" align="left">
         <template slot-scope="scope"><span>{{ scope.row.createTime }}</span></template>
       </el-table-column>
-      <el-table-column label="操作" width="120" align="center">
+      <el-table-column label="操作" width="65" align="left">
         <template slot-scope="scope">
           <el-tooltip class="item" effect="dark" content="代码生成" placement="top">
             <el-button type="primary" icon="el-icon-brush" size="mini" @click="makeCode(scope.row)" />
@@ -29,27 +29,27 @@
       <div v-loading="doLoading" class="popload">
         <el-form ref="conf" class="half" :model="conf" :rules="rules" label-width="75px">
           <el-table v-if="batchFlag" style="width: 100%;margin-bottom: 10px;" :stripe="true" size="mini" :show-overflow-tooltip="true" :data="seList" border>
-            <el-table-column label="表名" align="center">
+            <el-table-column label="表名" align="left">
               <template slot-scope="scope"><span>{{ scope.row.tableName }}</span></template>
             </el-table-column>
-            <el-table-column label="注释" max-width="400" :show-overflow-tooltip="true" align="center">
+            <el-table-column label="注释" max-width="400" :show-overflow-tooltip="true" align="left">
               <template slot-scope="scope"><span>{{ scope.row.comments }}</span></template>
             </el-table-column>
-            <el-table-column label="创建时间" align="center">
+            <el-table-column label="创建时间" align="left">
               <template slot-scope="scope"><span>{{ scope.row.createTime }}</span></template>
             </el-table-column>
           </el-table>
           <el-table v-else style="width: 100%;margin-bottom: 10px;" :stripe="true" size="mini" :show-overflow-tooltip="true" :data="columnList" border>
-            <el-table-column label="字段名" align="center">
+            <el-table-column label="字段名" align="left">
               <template slot-scope="scope"><span>{{ scope.row.columnName }}</span></template>
             </el-table-column>
-            <el-table-column label="字段类型" align="center">
+            <el-table-column label="字段类型" align="left">
               <template slot-scope="scope"><span>{{ scope.row.columnType }}</span></template>
             </el-table-column>
-            <el-table-column label="字段描述" max-width="400" :show-overflow-tooltip="true" align="center">
+            <el-table-column label="字段描述" max-width="400" :show-overflow-tooltip="true" align="left">
               <template slot-scope="scope"><span>{{ scope.row.columnComment }}</span></template>
             </el-table-column>
-            <el-table-column label="字符编码" align="center">
+            <el-table-column label="字符编码" align="left">
               <template slot-scope="scope"><span>{{ scope.row.characterSetName }}</span></template>
             </el-table-column>
           </el-table>

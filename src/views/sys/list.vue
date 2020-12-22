@@ -12,16 +12,16 @@
       <el-button size="medium" type="danger" icon="el-icon-plus" @click="add">添加</el-button>
     </div>
     <el-table v-loading="loading" style="width: 100%" :stripe="true" :show-overflow-tooltip="true" :data="list" border>
-      <el-table-column label="登陆账号" align="center">
+      <el-table-column label="登陆账号" align="left">
         <template slot-scope="scope"><span>{{ scope.row.name }}</span></template>
       </el-table-column>
-      <el-table-column label="权限角色" max-width="400" :show-overflow-tooltip="true" align="center">
+      <el-table-column label="权限角色" max-width="400" :show-overflow-tooltip="true" align="left">
         <template slot-scope="scope"><span>{{ scope.row.roleStr }}</span></template>
       </el-table-column>
-      <el-table-column label="账号状态" align="center">
+      <el-table-column label="账号状态" align="left">
         <template slot-scope="scope"><el-tag :type="statusTags[scope.row.status]">{{ statusNames[scope.row.status] }}</el-tag></template>
       </el-table-column>
-      <el-table-column label="操作" width="250" align="center">
+      <el-table-column label="操作" width="250" align="left">
         <template slot-scope="scope">
           <el-tooltip v-if="scope.row.status<3" class="item" effect="dark" content="修改" placement="top">
             <el-button type="primary" icon="el-icon-edit" size="mini" @click="modify(scope.row.id)" />

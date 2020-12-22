@@ -35,6 +35,16 @@ module.exports = {
     overlay: {
       warnings: false,
       errors: true
+    },
+    proxy: {
+      // change /api/login => http://127.0.0.1:8088/login API将被略去
+      [process.env.VUE_APP_BASE_API]: {
+        target: `http://127.0.0.1:8088`,
+        changeOrigin: true,
+        pathRewrite: {
+          ['^' + process.env.VUE_APP_BASE_API ]: ''
+        }
+      }
     }
   },
   configureWebpack: {

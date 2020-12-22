@@ -119,22 +119,28 @@ export const asyncRoutes = [
     ]
   },
   {
-    path: '/user',
+    path: '/sys',
     component: Layout,
-    redirect: '/user/list',
+    redirect: '/sys/list',
     alwaysShow: true, // will always show the root menu
-    name: '账号管理',
+    name: '基础管理',
     meta: {
-      title: '账号管理',
-      icon: 'el-icon-user',
+      title: '基础管理',
+      icon: 'el-icon-setting',
       roles: ['admin']
     },
     children: [
       {
         path: 'list',
-        component: () => import('@/views/user/list'),
+        component: () => import('@/views/sys/list'),
         name: '用户管理',
         meta: { title: '用户管理' }
+      },
+      {
+        path: 'auth',
+        component: () => import('@/views/sys/auth'),
+        name: '查看权限集',
+        meta: { title: '查看权限集' }
       }
     ]
   },
@@ -167,7 +173,7 @@ export const asyncRoutes = [
     children: [
       {
         path: 'center',
-        component: () => import('@/views/user/center'),
+        component: () => import('@/views/sys/center'),
         name: '个人中心',
         meta: { title: '个人中心' }
       }
