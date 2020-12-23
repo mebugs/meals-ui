@@ -118,7 +118,7 @@ export default
       }
     },
     listSelect(val) { // 触发多选
-      if (val && val.length > 2) {
+      if (val && val.length > 1) {
         this.showBatch = true
       } else {
         this.showBatch = false

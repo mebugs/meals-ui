@@ -45,10 +45,10 @@
         </el-form>
         <div class="half">
           <div class="hfitem hlf">
-            <el-tree ref="authTree" node-key="id" :data="allAuthTree" :check-strictly="true" :props="{label: 'name'}" show-checkbox :default-expand-all="true" :default-checked-keys="roleAuthIds" @check="checkNode" />
+            <el-tree v-if="doFlag" ref="authTree" node-key="id" :data="allAuthTree" :check-strictly="true" :props="{label: 'name'}" show-checkbox :default-expand-all="true" :default-checked-keys="roleAuthIds" @check="checkNode" />
           </div>
-          <div class="hfitem">
-            <el-table v-if="showTree" style="width: 100%" :stripe="true" :show-overflow-tooltip="true" :data="roleAuthTree" border row-key="id" default-expand-all :tree-props="{children: 'children'}">
+          <div class="hfitem hlr">
+            <el-table v-if="showTree" style="width: 100%" height="350" size="small" :stripe="true" :show-overflow-tooltip="true" :data="roleAuthTree" row-key="id" default-expand-all :tree-props="{children: 'children'}">
               <el-table-column label="权限名称" align="left">
                 <template slot-scope="scope"><span>{{ scope.row.name }}</span></template>
               </el-table-column>
@@ -199,7 +199,7 @@ export default
             this.$message.warning('至少需要选择一个权限提交')
             return false
           }
-          this.role.authIds = this.checkAuth
+          this.role.authIds = checkAuth
           this.doLoading = true
           saveRole(this.role).then(res => {
             this.doLoading = false
@@ -269,17 +269,23 @@ export default
 </script>
 
 <style scoped="scoped">
+ .half{
+   margin-bottom: 15px;
+ }
 .hfitem.hlf {
     width: calc(50% - 5px);
     margin-right: 5px;
-    border: 1px solid #ebeef5;
     padding: 5px;
 }
 
 .hfitem {
-    height: 360px;
+    height: 350px;
     overflow-y: auto;
     overflow-x: hidden;
+    border: 1px solid #ebeef5;
+}
+.hfitem.hlr{
+  overflow: hidden;
 }
 .tpx {
     border: 1px solid #ebeef5;
