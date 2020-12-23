@@ -23,19 +23,19 @@
       </el-table-column>
       <el-table-column label="操作" width="250" align="left">
         <template slot-scope="scope">
-          <el-tooltip v-authorize="'SYS-USER-M'" v-if="scope.row.status<3" class="item" effect="dark" content="修改" placement="top">
+          <el-tooltip v-if="scope.row.status<3" v-authorize="'SYS-USER-M'" class="item" effect="dark" content="修改" placement="top">
             <el-button type="primary" icon="el-icon-edit" size="mini" @click="modify(scope.row.id)" />
           </el-tooltip>
-          <el-tooltip v-authorize="'SYS-USER-M'" v-if="scope.row.status==1" class="item" effect="dark" content="锁定" placement="top">
+          <el-tooltip v-if="scope.row.status==1" v-authorize="'SYS-USER-M'" class="item" effect="dark" content="锁定" placement="top">
             <el-button type="warning" icon="el-icon-lock" size="mini" @click="changeTo(scope.row,2)" />
           </el-tooltip>
-          <el-tooltip v-authorize="'SYS-USER-M'" v-if="scope.row.status==2" class="item" effect="dark" content="解锁" placement="top">
+          <el-tooltip v-if="scope.row.status==2" v-authorize="'SYS-USER-M'" class="item" effect="dark" content="解锁" placement="top">
             <el-button type="success" icon="el-icon-unlock" size="mini" @click="changeTo(scope.row,1)" />
           </el-tooltip>
-          <el-tooltip v-authorize="'SYS-USER-M'" v-if="scope.row.status<3" class="item" effect="dark" content="重置密码" placement="top">
+          <el-tooltip v-if="scope.row.status<3" v-authorize="'SYS-USER-M'" class="item" effect="dark" content="重置密码" placement="top">
             <el-button type="info" icon="el-icon-refresh" size="mini" @click="changeTo(scope.row,4)" />
           </el-tooltip>
-          <el-tooltip v-authorize="'SYS-USER-D'" v-if="scope.row.status<3" class="item" effect="dark" content="删除" placement="top">
+          <el-tooltip v-if="scope.row.status<3" v-authorize="'SYS-USER-D'" class="item" effect="dark" content="删除" placement="top">
             <el-button type="danger" icon="el-icon-delete" size="mini" @click="changeTo(scope.row,3)" />
           </el-tooltip>
         </template>

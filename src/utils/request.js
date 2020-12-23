@@ -75,7 +75,7 @@ service.interceptors.response.use(
           cancelButtonText: '取消',
           type: 'warning'
         }).then(() => {
-          location.href='/dashboard'
+          location.href = '/dashboard'
         })
       }
       return Promise.reject(new Error(res.msg || '数据异常请联系管理员'))

@@ -3,7 +3,7 @@
     <div class="query">
       <el-input v-model="query.name" class="querys h_40 w_200" clearable size="small" placeholder="请输入角色名快速搜索" />
       <el-button size="medium" type="primary" icon="el-icon-search" @click="search">查询</el-button>
-      <el-button v-authorize="'SYS-ROLE-C'"  size="medium" type="danger" icon="el-icon-plus" @click="add">添加</el-button>
+      <el-button v-authorize="'SYS-ROLE-C'" size="medium" type="danger" icon="el-icon-plus" @click="add">添加</el-button>
     </div>
     <el-table v-loading="loading" style="width: 100%" :stripe="true" :show-overflow-tooltip="true" :data="list" border>
       <el-table-column label="角色名称" align="left">
@@ -236,21 +236,21 @@ export default
       })
     },
     del(id) { // 删除
-      let tips = '是否确认此角色？删除使用此角色的用户也会同步删除角色！'
+      const tips = '是否确认此角色？删除使用此角色的用户也会同步删除角色！'
       this.$confirm(tips, '提示', {
         confirmButtonText: '确认',
         cancelButtonText: '取消',
         type: 'warning'
       }).then(() => {
         delRoleInfo(id).then(res => {
-        if (res.data) {
-          this.$message.success('角色数据更新成功')
-          this.canc()
-          this.getList()
-        } else {
-          this.$message.error('删除角色信息失败')
-        }
-      })
+          if (res.data) {
+            this.$message.success('角色数据更新成功')
+            this.canc()
+            this.getList()
+          } else {
+            this.$message.error('删除角色信息失败')
+          }
+        })
       })
     },
     canc() { // 通用弹窗取消
