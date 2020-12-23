@@ -29,3 +29,10 @@ export function saveRole(data) {
     data
   })
 }
+
+export function delRoleInfo(params) {
+  return request({
+    url: '/sysRole/delRole/' + params,
+    method: 'get'
+  })
+}

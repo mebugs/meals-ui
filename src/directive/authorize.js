@@ -8,10 +8,10 @@ Vue.directive('authorize', {
     // 提取绑定入参AUTHKEY
     const { value } = binding
     // 提取用户的权限集
-    const roles = store.getters && store.getters.roles
+    const authKeys = store.getters && store.getters.authKeys
     if (value && value.length > 0) {
       // 权限集中不包含该权限
-      if (!roles.includes(value)) {
+      if (!authKeys.includes(value)) {
         el.parentNode && el.parentNode.removeChild(el)
       }
     } else {

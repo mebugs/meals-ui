@@ -3,7 +3,7 @@
     <div class="query">
       <el-input v-model="query.tableName" class="querys h_40 w_200" clearable size="small" placeholder="请输入表名模糊查询" />
       <el-button size="medium" type="primary" icon="el-icon-search" @click="search">查询</el-button>
-      <el-button size="medium" :type="showBatch ? 'danger' : 'info'" icon="el-icon-plus" @click="addBatch">批量生成代码</el-button>
+      <el-button v-authorize="'DEV-CODE-M'" size="medium" :type="showBatch ? 'danger' : 'info'" icon="el-icon-plus" @click="addBatch">批量生成代码</el-button>
     </div>
     <el-table v-loading="loading" style="width: 100%" :stripe="true" :show-overflow-tooltip="true" :data="list" border @selection-change="listSelect">
       <el-table-column type="selection" width="40" />
@@ -16,7 +16,7 @@
       <el-table-column label="创建时间" width="160" align="left">
         <template slot-scope="scope"><span>{{ scope.row.createTime }}</span></template>
       </el-table-column>
-      <el-table-column label="操作" width="65" align="left">
+      <el-table-column v-authorize="'DEV-CODE-M'" label="操作" width="65" align="left">
         <template slot-scope="scope">
           <el-tooltip class="item" effect="dark" content="代码生成" placement="top">
             <el-button type="primary" icon="el-icon-brush" size="mini" @click="makeCode(scope.row)" />

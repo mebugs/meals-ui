@@ -9,7 +9,7 @@
         <el-option v-for="item in statusList" :key="item.id" :label="item.name" :value="item.id" />
       </el-select>
       <el-button size="medium" type="primary" icon="el-icon-search" @click="search">查询</el-button>
-      <el-button size="medium" type="danger" icon="el-icon-plus" @click="add">添加</el-button>
+      <el-button v-authorize="'SYS-USER-C'" size="medium" type="danger" icon="el-icon-plus" @click="add">添加</el-button>
     </div>
     <el-table v-loading="loading" style="width: 100%" :stripe="true" :show-overflow-tooltip="true" :data="list" border>
       <el-table-column label="登陆账号" align="left">
@@ -23,19 +23,19 @@
       </el-table-column>
       <el-table-column label="操作" width="250" align="left">
         <template slot-scope="scope">
-          <el-tooltip v-if="scope.row.status<3" class="item" effect="dark" content="修改" placement="top">
+          <el-tooltip v-authorize="'SYS-USER-M'" v-if="scope.row.status<3" class="item" effect="dark" content="修改" placement="top">
             <el-button type="primary" icon="el-icon-edit" size="mini" @click="modify(scope.row.id)" />
           </el-tooltip>
-          <el-tooltip v-if="scope.row.status==1" class="item" effect="dark" content="锁定" placement="top">
+          <el-tooltip v-authorize="'SYS-USER-M'" v-if="scope.row.status==1" class="item" effect="dark" content="锁定" placement="top">
             <el-button type="warning" icon="el-icon-lock" size="mini" @click="changeTo(scope.row,2)" />
           </el-tooltip>
-          <el-tooltip v-if="scope.row.status==2" class="item" effect="dark" content="解锁" placement="top">
+          <el-tooltip v-authorize="'SYS-USER-M'" v-if="scope.row.status==2" class="item" effect="dark" content="解锁" placement="top">
             <el-button type="success" icon="el-icon-unlock" size="mini" @click="changeTo(scope.row,1)" />
           </el-tooltip>
-          <el-tooltip v-if="scope.row.status<3" class="item" effect="dark" content="重置密码" placement="top">
+          <el-tooltip v-authorize="'SYS-USER-M'" v-if="scope.row.status<3" class="item" effect="dark" content="重置密码" placement="top">
             <el-button type="info" icon="el-icon-refresh" size="mini" @click="changeTo(scope.row,4)" />
           </el-tooltip>
-          <el-tooltip v-if="scope.row.status<3" class="item" effect="dark" content="删除" placement="top">
+          <el-tooltip v-authorize="'SYS-USER-D'" v-if="scope.row.status<3" class="item" effect="dark" content="删除" placement="top">
             <el-button type="danger" icon="el-icon-delete" size="mini" @click="changeTo(scope.row,3)" />
           </el-tooltip>
         </template>

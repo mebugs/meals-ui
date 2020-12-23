@@ -7,7 +7,7 @@
       <div class="lx">
         <div class="authT">
           <el-tabs v-model="activeName">
-            <el-tab-pane v-for="item in allAuthTree" :label="item.roleName" :name="item.roleName">
+            <el-tab-pane v-for="(item,index) in allAuthTree" :key="index" :label="item.roleName" :name="item.roleName">
               <el-table style="width: 100%" class="tfull" size="small" :stripe="true" :show-overflow-tooltip="true" :data="item.authTree" row-key="id" default-expand-all :tree-props="{children: 'children'}" border>
                 <el-table-column label="权限名称" align="left">
                   <template slot-scope="scope"><span>{{ scope.row.name }}</span></template>

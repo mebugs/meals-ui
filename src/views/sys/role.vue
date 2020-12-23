@@ -3,7 +3,7 @@
     <div class="query">
       <el-input v-model="query.name" class="querys h_40 w_200" clearable size="small" placeholder="请输入角色名快速搜索" />
       <el-button size="medium" type="primary" icon="el-icon-search" @click="search">查询</el-button>
-      <el-button size="medium" type="danger" icon="el-icon-plus" @click="add">添加</el-button>
+      <el-button v-authorize="'SYS-ROLE-C'"  size="medium" type="danger" icon="el-icon-plus" @click="add">添加</el-button>
     </div>
     <el-table v-loading="loading" style="width: 100%" :stripe="true" :show-overflow-tooltip="true" :data="list" border>
       <el-table-column label="角色名称" align="left">
@@ -17,11 +17,11 @@
       </el-table-column>
       <el-table-column label="操作" width="140" align="left">
         <template slot-scope="scope">
-          <el-tooltip class="item" effect="dark" content="修改" placement="top">
+          <el-tooltip v-authorize="'SYS-ROLE-M'" class="item" effect="dark" content="修改" placement="top">
             <el-button type="primary" icon="el-icon-edit" size="mini" @click="modify(scope.row.id)" />
           </el-tooltip>
-          <el-tooltip class="item" effect="dark" content="删除" placement="top">
-            <el-button type="danger" icon="el-icon-delete" size="mini" @click="delete(scope.row.id)" />
+          <el-tooltip v-authorize="'SYS-ROLE-D'" class="item" effect="dark" content="删除" placement="top">
+            <el-button type="danger" icon="el-icon-delete" size="mini" @click="del(scope.row.id)" />
           </el-tooltip>
         </template>
       </el-table-column>
@@ -76,7 +76,7 @@
 </template>
 
 <script>
-import { pageRole, getRoleInfo, saveRole } from '@/api/role'
+import { pageRole, getRoleInfo, saveRole, delRoleInfo } from '@/api/role'
 import { getAllAuthTree } from '@/api/auth'
 export default
 {
@@ -204,11 +204,11 @@ export default
           saveRole(this.role).then(res => {
             this.doLoading = false
             if (res.data) {
-              this.$message.success('用户数据更新成功')
+              this.$message.success('角色数据更新成功')
               this.canc()
               this.getList()
             } else {
-              this.$message.error('用户数据更新失败，可能账号名已存在')
+              this.$message.error('角色数据更新失败')
             }
           })
         } else {
@@ -235,16 +235,23 @@ export default
         }
       })
     },
-    delete(id) { // 删除
-      // this.role = { id: row.id }
-      // let tips = '是否确认删除账号？删除后无法恢复，仅在列表可见！'
-      // this.$confirm(tips, '提示', {
-      //   confirmButtonText: '确认',
-      //   cancelButtonText: '取消',
-      //   type: 'warning'
-      // }).then(() => {
-      //   this.saveOne()
-      // })
+    del(id) { // 删除
+      let tips = '是否确认此角色？删除使用此角色的用户也会同步删除角色！'
+      this.$confirm(tips, '提示', {
+        confirmButtonText: '确认',
+        cancelButtonText: '取消',
+        type: 'warning'
+      }).then(() => {
+        delRoleInfo(id).then(res => {
+        if (res.data) {
+          this.$message.success('角色数据更新成功')
+          this.canc()
+          this.getList()
+        } else {
+          this.$message.error('删除角色信息失败')
+        }
+      })
+      })
     },
     canc() { // 通用弹窗取消
       this.role = {}

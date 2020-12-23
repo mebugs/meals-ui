@@ -57,68 +57,6 @@ export const constantRoutes = [
 // 动态路由
 export const asyncRoutes = [
   {
-    path: '/role',
-    component: Layout,
-    redirect: '/role/def',
-    alwaysShow: true, // will always show the root menu
-    name: '测试页',
-    meta: { title: '测试页', icon: 'el-icon-toilet-paper' },
-    children: [
-      {
-        path: 'def',
-        component: () => import('@/views/role/def'),
-        name: '全员可见',
-        meta: { title: '全员可见' }
-      },
-      {
-        path: 'admin',
-        component: () => import('@/views/role/admin'),
-        name: '仅超管可见',
-        meta: { title: '仅超管可见', roles: ['admin'] }
-      },
-      {
-        path: 'adminadev',
-        component: () => import('@/views/role/adminadev'),
-        name: '超管/研发可见',
-        meta: { title: '超管/研发可见', roles: ['admin', 'dev'] }
-      },
-      {
-        path: 'more',
-        component: () => import('@/views/role/more'),
-        name: '多级路由',
-        meta: { title: '多级路由', breadcrumb: false },
-        children: [
-          {
-            path: 'child',
-            component: () => import('@/views/role/more/child'),
-            name: '子级路由界面',
-            meta: { title: '子级路由界面' }
-          },
-          {
-            path: 'more',
-            component: () => import('@/views/role/more/index'),
-            name: '更多子级路由',
-            meta: { title: '更多子级路由', breadcrumb: false },
-            children: [
-              {
-                path: 'child',
-                component: () => import('@/views/role/more/child/index'),
-                name: '更子级路由界面1',
-                meta: { title: '更子级路由界面1' }
-              },
-              {
-                path: 'child2',
-                component: () => import('@/views/role/more/child/index'),
-                name: '更子级路由界面2',
-                meta: { title: '更子级路由界面2' }
-              }
-            ]
-          }
-        ]
-      }
-    ]
-  },
-  {
     path: '/sys',
     component: Layout,
     redirect: '/sys/list',
@@ -127,26 +65,26 @@ export const asyncRoutes = [
     meta: {
       title: '基础管理',
       icon: 'el-icon-setting',
-      roles: ['admin']
+      auth: 'SYS'
     },
     children: [
       {
         path: 'list',
         component: () => import('@/views/sys/list'),
         name: '用户管理',
-        meta: { title: '用户管理' }
+        meta: { title: '用户管理', auth: 'SYS-USER' }
       },
       {
         path: 'role',
         component: () => import('@/views/sys/role'),
         name: '角色管理',
-        meta: { title: '角色管理' }
+        meta: { title: '角色管理', auth: 'SYS-ROLE' }
       },
       {
         path: 'auth',
         component: () => import('@/views/sys/auth'),
         name: '查看权限集',
-        meta: { title: '查看权限集' }
+        meta: { title: '查看权限集', auth: 'SYS-AUTH' }
       }
     ]
   },
@@ -159,14 +97,14 @@ export const asyncRoutes = [
     meta: {
       title: '代码生成',
       icon: 'el-icon-attract',
-      roles: ['dev']
+      auth: 'DEV'
     },
     children: [
       {
         path: 'list',
         component: () => import('@/views/codeMaker/index'),
         name: '代码生成器',
-        meta: { title: '代码生成器' }
+        meta: { title: '代码生成器', auth: 'DEV-CODE' }
       }
     ]
   },
@@ -181,7 +119,7 @@ export const asyncRoutes = [
         path: 'center',
         component: () => import('@/views/sys/center'),
         name: '个人中心',
-        meta: { title: '个人中心' }
+        meta: { title: '个人中心', auth: 'SYS-USER-P' }
       }
     ]
   },
