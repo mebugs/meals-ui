@@ -45,7 +45,7 @@
     <div class="pagination">
       <el-pagination :current-page.sync="query.current" :page-size="query.size" layout="total, prev, pager, next, jumper" :total="query.total" background @current-change="change" />
     </div>
-    <el-dialog v-droll :title="title" width="500px" :visible.sync="doFlag" :close-on-click-modal="false">
+    <el-dialog v-droll :title="title" width="600px" :visible.sync="doFlag" :close-on-click-modal="false">
       <div v-loading="doLoading" class="popload">
         <el-form ref="user" :model="user" :rules="rules" label-width="85px">
           <el-form-item class="need" label="登录账号" prop="name">
