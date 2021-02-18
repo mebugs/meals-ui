@@ -4,16 +4,26 @@
       <p>欢迎回来：<b>{{ mine.name }}</b></p>
     </div>
     <div class="fux">
-      <div class="lx">
+      <div v-if="allAuthTree[0]" class="lx">
         <div class="authT">
           <el-tabs v-model="activeName">
             <el-tab-pane v-for="(item,index) in allAuthTree" :key="index" :label="item.roleName" :name="item.roleName">
-              <el-table style="width: 100%" class="tfull" size="small" :stripe="true" :show-overflow-tooltip="true" :data="item.authTree" row-key="id" default-expand-all :tree-props="{children: 'children'}" border>
+              <el-table
+                border
+                size="small"
+                :height="height"
+                :stripe="true"
+                :data="item.authTree"
+                row-key="id"
+                default-expand-all
+                :tree-props="{children: 'children'}"
+                style="width: 100%"
+              >
                 <el-table-column label="权限名称" align="left">
                   <template slot-scope="scope"><span>{{ scope.row.name }}</span></template>
                 </el-table-column>
                 <el-table-column label="权限类型" align="left">
-                  <template slot-scope="scope"><el-tag :type="typeTags[scope.row.type]">{{ typeVals[scope.row.type] }}</el-tag></template>
+                  <template slot-scope="scope"><el-tag :type="typeTags[scope.row.type]" effect="dark">{{ typeVals[scope.row.type] }}</el-tag></template>
                 </el-table-column>
               </el-table>
             </el-tab-pane>
@@ -52,6 +62,7 @@ export default
       loading: true,
       user: {},
       doLoading: false,
+      height: 0,
       rules: {
         nowPwd: [
           { required: true, message: '请输入原密码', trigger: 'blur' },
@@ -73,6 +84,12 @@ export default
     }
   },
   created() {
+
+  },
+  mounted() {
+    const { body } = document
+    const rect = body.getBoundingClientRect()
+    this.height = rect.height - 210
     this.init()
   },
   methods:
@@ -144,10 +161,5 @@ export default
 
   .rx {
       width: 40%;
-  }
-  .tfull {
-      max-height: calc(100vh - 210px);
-      overflow-y: auto;
-      overflow-x: hidden;
   }
 </style>

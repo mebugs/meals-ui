@@ -20,7 +20,7 @@
           <el-tooltip v-authorize="'SYS-ROLE-M'" class="item" effect="dark" content="修改" placement="top">
             <el-button type="primary" icon="el-icon-edit" size="mini" @click="modify(scope.row.id)" />
           </el-tooltip>
-          <el-tooltip v-authorize="'SYS-ROLE-D'" class="item" effect="dark" content="删除" placement="top">
+          <el-tooltip v-authorize="'SYS-ROLE-M'" class="item" effect="dark" content="删除" placement="top">
             <el-button type="danger" icon="el-icon-delete" size="mini" @click="del(scope.row.id)" />
           </el-tooltip>
         </template>
@@ -53,7 +53,7 @@
                 <template slot-scope="scope"><span>{{ scope.row.name }}</span></template>
               </el-table-column>
               <el-table-column label="权限类型" align="left">
-                <template slot-scope="scope"><el-tag :type="typeTags[scope.row.type]">{{ typeVals[scope.row.type] }}</el-tag></template>
+                <template slot-scope="scope"><el-tag :type="typeTags[scope.row.type]" effect="dark">{{ typeVals[scope.row.type] }}</el-tag></template>
               </el-table-column>
             </el-table>
             <div v-else class="tpx">

@@ -19,7 +19,7 @@
         <template slot-scope="scope"><span>{{ scope.row.roleStr }}</span></template>
       </el-table-column>
       <el-table-column label="账号状态" align="left">
-        <template slot-scope="scope"><el-tag :type="statusTags[scope.row.status]">{{ statusNames[scope.row.status] }}</el-tag></template>
+        <template slot-scope="scope"><el-tag :type="statusTags[scope.row.status]" effect="dark">{{ statusNames[scope.row.status] }}</el-tag></template>
       </el-table-column>
       <el-table-column label="操作" width="250" align="left">
         <template slot-scope="scope">
@@ -35,7 +35,7 @@
           <el-tooltip v-if="scope.row.status<3" v-authorize="'SYS-USER-M'" class="item" effect="dark" content="重置密码" placement="top">
             <el-button type="info" icon="el-icon-refresh" size="mini" @click="changeTo(scope.row,4)" />
           </el-tooltip>
-          <el-tooltip v-if="scope.row.status<3" v-authorize="'SYS-USER-D'" class="item" effect="dark" content="删除" placement="top">
+          <el-tooltip v-if="scope.row.status<3" v-authorize="'SYS-USER-M'" class="item" effect="dark" content="删除" placement="top">
             <el-button type="danger" icon="el-icon-delete" size="mini" @click="changeTo(scope.row,3)" />
           </el-tooltip>
         </template>

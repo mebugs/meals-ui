@@ -1,5 +1,6 @@
 // cover some element-ui styles
 
+
 .el-breadcrumb__inner,
 .el-breadcrumb__inner a {
   font-weight: 400 !important;
@@ -47,3 +48,17 @@
 .el-range-separator {
   box-sizing: content-box;
 }
+
+/* 改变主题色变量 */
+$--color-primary: #333A41;
+$--color-success: #3D5134;
+$--color-warning: #5C4420;
+$--color-danger: #A24C4C;
+$--color-text-regular: #333333;
+$--color-text-secondary: #555555;
+$--color-text-placeholder: #9FA8AE;
+
+/* 改变 icon 字体路径变量，必需 */
+$--font-path: '~element-ui/lib/theme-chalk/fonts';
+
+@import "~element-ui/packages/theme-chalk/src/index";

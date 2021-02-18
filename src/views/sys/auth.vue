@@ -1,11 +1,22 @@
 <template>
-  <div class="app-container">
-    <el-table v-loading="loading" style="width: 100%" :stripe="true" :show-overflow-tooltip="true" :data="list" border row-key="id" default-expand-all :tree-props="{children: 'children'}">
+  <div v-if="height" class="app-container">
+    <el-table
+      v-loading="loading"
+      style="width: 100%"
+      :height="height"
+      size="small"
+      :stripe="true"
+      :data="list"
+      border
+      row-key="id"
+      default-expand-all
+      :tree-props="{children: 'children'}"
+    >
       <el-table-column label="权限名称" align="left">
         <template slot-scope="scope"><span>{{ scope.row.name }}</span></template>
       </el-table-column>
       <el-table-column label="权限类型" width="120" align="left">
-        <template slot-scope="scope"><el-tag :type="typeTags[scope.row.type]">{{ typeVals[scope.row.type] }}</el-tag></template>
+        <template slot-scope="scope"><el-tag :type="typeTags[scope.row.type]" effect="dark">{{ typeVals[scope.row.type] }}</el-tag></template>
       </el-table-column>
       <el-table-column label="权限等级" width="100" align="left">
         <template slot-scope="scope">{{ scope.row.level+'级' }}</template>
@@ -26,10 +37,16 @@ export default
       list: [],
       loading: false,
       typeVals: ['', '菜单/路由', '按钮/接口'],
-      typeTags: ['primary', 'primary', 'success']
+      typeTags: ['primary', 'primary', 'success'],
+      height: 0
     }
   },
   created() {
+  },
+  mounted() {
+    const { body } = document
+    const rect = body.getBoundingClientRect()
+    this.height = rect.height - 90
     this.init()
   },
   methods:
